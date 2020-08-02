@@ -3,7 +3,7 @@ package FrontPages;
 import HeadMaster.GroupMasterPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import HeadMaster.GroupMasterControl;
 public class FrontControl {
     FrontView mv;
     GroupMasterPanel gmp;
@@ -21,11 +21,12 @@ public class FrontControl {
     {
         mv.getContentPane().remove(mv.panel);
         
-        GroupMasterPanel gm = new GroupMasterPanel();
-        gmp=gm;
-        gm.bButtonAction(new bButtonAct());
-        gm.cButtonAction(new cButtonAct());        
-        mv.getContentPane().add(gm);
+        
+        gmp = new GroupMasterPanel();
+        GroupMasterControl gmc = new GroupMasterControl(gmp,mv);
+//        gmp.bButtonAction(new bButtonAct());
+//        gmp.cButtonAction(new cButtonAct());        
+        mv.getContentPane().add(gmp);
            mv.invalidate();
                 mv.validate();     
                 mv.repaint();
@@ -57,27 +58,27 @@ public class FrontControl {
 }
    
     
-    class bButtonAct implements ActionListener
-    {
-
-        @Override
-        public void actionPerformed(ActionEvent evt1) {
-            mv.getContentPane().remove(gmp);
-                mv.invalidate();
-                mv.validate();
-                mv.getContentPane().add(mv.panel);
-                mv.repaint();
-        }
-        
-    }
-    class cButtonAct implements ActionListener
-    {
-        @Override
-        public void actionPerformed(ActionEvent evt1)
-        {
-            new PresistDataFrame();
-        }
-    }
+//    class bButtonAct implements ActionListener
+//    {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent evt1) {
+//            mv.getContentPane().remove(gmp);
+//                mv.invalidate();
+//                mv.validate();
+//                mv.getContentPane().add(mv.panel);
+//                mv.repaint();
+//        }
+//        
+//    }
+//    class cButtonAct implements ActionListener
+//    {
+//        @Override
+//        public void actionPerformed(ActionEvent evt1)
+//        {
+//            new PresistDataFrame();
+//        }
+//    }
 }
 
 

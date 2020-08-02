@@ -10,12 +10,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-class FrontView extends JFrame
+public class FrontView extends JFrame
 {
      private JMenuItem groupMaster;
     private JMenuItem sgroupMaster;
     private JMenuItem headMaster;  
-    JPanel panel;
+    public JPanel panel;
     public FrontView()
     {
         JMenuBar menubar = new JMenuBar();

@@ -1,4 +1,4 @@
-package FrontPages;
+package HeadMaster;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +17,10 @@ class PresistDataFrame extends JFrame
         JLabel Alabel = new JLabel("Alias");
         JLabel Plabel = new JLabel("Priority");
         JTextField Name = new JTextField(10);
-       JTextField Alias = new JTextField(10);
-       JTextField Priority = new JTextField(10);
-       JButton submitButton = new JButton("Submit");
-       JButton cancelButton = new JButton("Cancel");
+        JTextField Alias = new JTextField(10);
+        JTextField Priority = new JTextField(10);
+        JButton submitButton = new JButton("Submit");
+        JButton cancelButton = new JButton("Cancel");
         JComboBox ComboBox = new JComboBox(new Object[]{"ASSERTS","LIABILITY","INCOME","EXPENDITURE"});
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setBounds(500,200,600,600);
