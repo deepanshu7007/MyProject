@@ -17,17 +17,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class GroupMasterPanel extends JPanel
 {
-    private JButton B;
-    private JButton C;
-    public GroupMasterPanel()
+    private JButton BackButton;
+    private JButton AddButton;
+    private JButton ModifyButton;
+    private JButton RemoveButton;
+    
+    DefaultTableModel tableModel;
+    public GroupMasterPanel(DefaultTableModel tableModel)
     {
-         String data[][]={ {"101","Amit","670000"},    
-                          {"102","Jai","780000"},    
-                          {"101","Sachin","700000"}
-         };    
-    String column[]={"ID","NAME","SALARY"};     
-    DefaultTableModel tableModel = new DefaultTableModel(data,column);
-    JTable jt=new JTable(tableModel);         
+        this.tableModel=tableModel;
+    JTable jt=new JTable(tableModel);    
     JScrollPane sp=new JScrollPane();
     sp.setViewportView(jt);
     System.out.println(Toolkit.getDefaultToolkit().getScreenSize().width);
@@ -37,10 +36,14 @@ public class GroupMasterPanel extends JPanel
     setLayout(null);
     setBackground(Color.CYAN);
     setSize(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height);
-     B = new JButton("Back");
-    C = new JButton("ADD");
-    B.setBounds(400,500,100,100);
-    C.setBounds(200,500,100,100);
+     BackButton = new JButton("BACK");
+    AddButton = new JButton("ADD");
+    ModifyButton = new JButton("MODIFY");
+    RemoveButton = new JButton("REMOVE");
+    BackButton.setBounds(400,500,100,100);
+    AddButton.setBounds(200,500,100,100);
+    ModifyButton.setBounds(600,500,100,100);
+    RemoveButton.setBounds(800,500,100,100);
 //    B.addActionListener(new ActionListener() {
 //
 //             @Override
@@ -50,7 +53,7 @@ public class GroupMasterPanel extends JPanel
 //                add(panel);             
 //             }
 //         });
-    add(B);
+    add(BackButton);
 //    C.addActionListener(new ActionListener() {
 //
 //             @Override
@@ -58,18 +61,20 @@ public class GroupMasterPanel extends JPanel
 //                new EnterDataFrame();
 //             }
 //         });
-    add(C);
+    add(AddButton);
+    add(ModifyButton);
+    add(RemoveButton);
     }
     public void bButtonAction(ActionListener evt)
     {
         System.out.println(Thread.currentThread());
         
-        B.addActionListener(evt);
+        BackButton.addActionListener(evt);
     }
     public void cButtonAction(ActionListener evt)
     {
          System.out.println(Thread.currentThread());
 //        System.out.println("Hello World2");
-        C.addActionListener(evt);
+        AddButton.addActionListener(evt);
     }
 }

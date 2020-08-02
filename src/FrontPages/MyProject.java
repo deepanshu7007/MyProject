@@ -21,8 +21,7 @@ public class MyProject {
             java.util.logging.Logger.getLogger(MyProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         FrontView mv = new FrontView();
-        GroupMasterPanel gmp = new GroupMasterPanel();
-        FrontControl cf = new FrontControl(mv,gmp);
+        FrontControl cf = new FrontControl(mv);
         mv.setVisible(true);
     }
 }

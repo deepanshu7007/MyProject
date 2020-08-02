@@ -1,15 +1,17 @@
 package FrontPages;
 
+import HeadMaster.GroupMasterControl;
 import HeadMaster.GroupMasterPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import HeadMaster.GroupMasterControl;
+import javax.swing.table.DefaultTableModel;
 public class FrontControl {
     FrontView mv;
-    GroupMasterPanel gmp;
-    public FrontControl(FrontView mv,GroupMasterPanel gmp)
+    DefaultTableModel dm;
+    public FrontControl(FrontView mv)
     {
-       this.gmp=gmp;
+      dm = new DefaultTableModel(new Object[][]{},new String[]{"NAME","Priority","HEAD","ALIAS"});
+       
        this.mv = mv;
        this.mv.groupMasterAct(new groupMasterAction());
        this.mv.subMasterAct(new subMasterAction());
@@ -22,7 +24,7 @@ public class FrontControl {
         mv.getContentPane().remove(mv.panel);
         
         
-        gmp = new GroupMasterPanel();
+        GroupMasterPanel gmp = new GroupMasterPanel(dm);
         GroupMasterControl gmc = new GroupMasterControl(gmp,mv);
 //        gmp.bButtonAction(new bButtonAct());
 //        gmp.cButtonAction(new cButtonAct());        
