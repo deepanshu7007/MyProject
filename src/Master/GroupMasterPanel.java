@@ -1,11 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package HeadMaster;
-
+package Master;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -25,8 +18,9 @@ public class GroupMasterPanel extends JPanel
     DefaultTableModel tableModel;
     public GroupMasterPanel(DefaultTableModel tableModel)
     {
-        this.tableModel=tableModel;
-    JTable jt=new JTable(tableModel);    
+    this.tableModel=tableModel;
+    JTable jt=new JTable(tableModel);
+    jt.setRowHeight(25);
     JScrollPane sp=new JScrollPane();
     sp.setViewportView(jt);
     System.out.println(Toolkit.getDefaultToolkit().getScreenSize().width);
@@ -65,16 +59,28 @@ public class GroupMasterPanel extends JPanel
     add(ModifyButton);
     add(RemoveButton);
     }
-    public void bButtonAction(ActionListener evt)
+    public void BackButtonAction(ActionListener evt)
     {
         System.out.println(Thread.currentThread());
         
         BackButton.addActionListener(evt);
     }
-    public void cButtonAction(ActionListener evt)
+    public void AddButtonAction(ActionListener evt)
     {
          System.out.println(Thread.currentThread());
 //        System.out.println("Hello World2");
         AddButton.addActionListener(evt);
+    }
+    public void ModifyButtonAction(ActionListener evt)
+    {
+         System.out.println(Thread.currentThread());
+//        System.out.println("Hello World2");
+        ModifyButton.addActionListener(evt);
+    }
+    public void DeleteButtonAction(ActionListener evt)
+    {
+         System.out.println(Thread.currentThread());
+//        System.out.println("Hello World2");
+        RemoveButton.addActionListener(evt);
     }
 }

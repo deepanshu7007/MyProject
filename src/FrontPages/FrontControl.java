@@ -1,61 +1,68 @@
 package FrontPages;
-
-import HeadMaster.GroupMasterControl;
-import HeadMaster.GroupMasterPanel;
+import Master.SubGrpMasterPanel;
+import Master.MasterModel;
+import Master.MasterControl;
+import Master.GroupMasterPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 public class FrontControl {
     FrontView mv;
-    DefaultTableModel dm;
+    MasterModel gmm;
+    DefaultTableModel dtm;
     public FrontControl(FrontView mv)
     {
-      dm = new DefaultTableModel(new Object[][]{},new String[]{"NAME","Priority","HEAD","ALIAS"});
-       
+       gmm = new MasterModel();
+       dtm = new DefaultTableModel(new Object[][]{},new String[]{"Name","Alias","Priority","Head"});
        this.mv = mv;
-       this.mv.groupMasterAct(new groupMasterAction());
-       this.mv.subMasterAct(new subMasterAction());
-       this.mv.headMasterAct(new headMasterAction());
+       this.mv.groupMasterAct(new GroupMasterAction());
+       this.mv.subMasterAct(new SubMasterAction());
+       this.mv.headMasterAct(new HeadMasterAction());
     }
-    class groupMasterAction implements ActionListener
+    class GroupMasterAction implements ActionListener
     {
     public void actionPerformed(ActionEvent evt)
     {
-        mv.getContentPane().remove(mv.panel);
-        
-        
-        GroupMasterPanel gmp = new GroupMasterPanel(dm);
-        GroupMasterControl gmc = new GroupMasterControl(gmp,mv);
+        mv.getContentPane().removeAll();
+        mv.repaint();
+        GroupMasterPanel gmp = new GroupMasterPanel(dtm);
+        MasterControl gmc = new MasterControl(gmp,mv,gmm);
 //        gmp.bButtonAction(new bButtonAct());
 //        gmp.cButtonAction(new cButtonAct());        
         mv.getContentPane().add(gmp);
-           mv.invalidate();
-                mv.validate();     
-                mv.repaint();
+        mv.invalidate();
+        mv.validate();     
+        mv.repaint();
 //        mv.getContentPane().removeAll();
 //        GroupMasterPanel gmp = new GroupMasterPanel();
 //        mv.add(gmp);
     }
-}
-    class subMasterAction implements ActionListener
+    }
+    class SubMasterAction implements ActionListener
     {
     public void actionPerformed(ActionEvent evt)
     {
         System.out.println("Sub master pressed");
-                
+        mv.getContentPane().removeAll();
+        mv.invalidate();
+        mv.validate();         
+        mv.repaint();
+        SubGrpMasterPanel sgm=new SubGrpMasterPanel();
+        mv.getContentPane().add(sgm);
+        mv.invalidate();
+        mv.validate();     
+        mv.repaint();
 //        mv.getContentPane().removeAll();
 //        GroupMasterPanel gmp = new GroupMasterPanel();
 //        mv.add(gmp);
     }
 }
-    class headMasterAction implements ActionListener
+    class HeadMasterAction implements ActionListener
     {
     public void actionPerformed(ActionEvent evt)
     {
         System.out.println("Head Master pressed");  
-//        mv.getContentPane().removeAll();
-//        GroupMasterPanel gmp = new GroupMasterPanel();
-//        mv.add(gmp);
+
     }
 }
    

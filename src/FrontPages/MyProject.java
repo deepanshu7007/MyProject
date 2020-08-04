@@ -1,7 +1,4 @@
 package FrontPages;
-
-import HeadMaster.GroupMasterPanel;
-
 public class MyProject {
     public static void main(String[] args) {
         try {

@@ -2,7 +2,6 @@ package FrontPages;
 
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -49,7 +48,7 @@ public class FrontView extends JFrame
     }
     void groupMasterAct(ActionListener listenForCalcButton)
     {
-        groupMaster.addActionListener(listenForCalcButton);
+        groupMaster.addActionListener(listenForCalcButton);   
     }
     void subMasterAct(ActionListener listenForSmaster)
     {
