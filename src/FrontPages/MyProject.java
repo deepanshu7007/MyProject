@@ -18,7 +18,8 @@ public class MyProject {
             java.util.logging.Logger.getLogger(MyProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         FrontView mv = new FrontView();
-        FrontControl cf = new FrontControl(mv);
+        FrontModel fm = new FrontModel();
+        FrontControl cf = new FrontControl(mv,fm);
         mv.setVisible(true);
     }
 }
