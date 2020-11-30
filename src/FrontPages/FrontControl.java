@@ -1,4 +1,6 @@
 package FrontPages;
+import Master.Account.AccountControl;
+import Master.Account.AccountPanel;
 import Master.Group.GroupControl;
 import Master.Group.GroupPanel;
 import Master.SubGroup.SubGroupControl;
@@ -14,7 +16,7 @@ public class FrontControl {
        this.mv = mv;
        this.mv.groupMasterAct(new MasterAction());
        this.mv.subMasterAct(new MasterAction());
-       
+       this.mv.accountPanelAct(new MasterAction());
     }
     class MasterAction implements ActionListener
     {
@@ -38,6 +40,17 @@ public class FrontControl {
         mv.repaint();
         SubGroupPanel gp = new SubGroupPanel(FrontModel.SubGroupTableModel);
         SubGroupControl gc = new SubGroupControl(gp,mv,fm);
+        mv.add(gp); 
+        mv.setVisible(true);     
+        mv.repaint();
+        }
+        if("ACCOUNT".equals(evt.getActionCommand()))
+        {
+        System.out.println("Hello world");
+        mv.getContentPane().removeAll();
+        mv.repaint();
+        AccountPanel gp = new AccountPanel(FrontModel.AccountTableModel);
+        AccountControl gc = new AccountControl(gp,mv,fm);
         mv.add(gp); 
         mv.setVisible(true);     
         mv.repaint();

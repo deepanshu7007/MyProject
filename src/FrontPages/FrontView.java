@@ -8,7 +8,6 @@ public class FrontView extends javax.swing.JFrame {
     }
        void groupMasterAct(ActionListener evt)
        {
-           
            GroupMaster.setActionCommand("GROUP");
            GroupMaster.addActionListener(evt);
        }
@@ -17,8 +16,12 @@ public class FrontView extends javax.swing.JFrame {
            SGroupMaster.setActionCommand("SUBGROUP");
             SGroupMaster.addActionListener(evt);
        }
-       
-       
+       void accountPanelAct(ActionListener evt)
+       {
+           AccountMasterButton.setActionCommand("ACCOUNT");
+           AccountMasterButton.addActionListener(evt);
+       }
+      //Hello world 
  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,24 +31,23 @@ public class FrontView extends javax.swing.JFrame {
         Master = new javax.swing.JMenu();
         GroupMaster = new javax.swing.JMenuItem();
         SGroupMaster = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        AccountMasterButton = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Accounting Software");
 
+        panel.setBackground(new java.awt.Color(204, 204, 255));
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1132, Short.MAX_VALUE)
+            .addGap(0, 1119, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 644, Short.MAX_VALUE)
         );
 
         Master.setText("Master");
@@ -63,21 +65,14 @@ public class FrontView extends javax.swing.JFrame {
         SGroupMaster.setText("Sub-Group Master");
         Master.add(SGroupMaster);
 
-        jMenu1.setText("Account Master");
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Supplier");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Customer");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Account");
-        jMenu1.add(jMenuItem3);
-
-        Master.add(jMenu1);
+        AccountMasterButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, 0));
+        AccountMasterButton.setText("Account Master");
+        AccountMasterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountMasterButtonActionPerformed(evt);
+            }
+        });
+        Master.add(AccountMasterButton);
 
         MenuBar.add(Master);
 
@@ -104,16 +99,17 @@ public class FrontView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_GroupMasterActionPerformed
 
+    private void AccountMasterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountMasterButtonActionPerformed
+        
+    }//GEN-LAST:event_AccountMasterButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AccountMasterButton;
     private javax.swing.JMenuItem GroupMaster;
     private javax.swing.JMenu Master;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenuItem SGroupMaster;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     public javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

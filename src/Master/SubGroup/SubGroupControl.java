@@ -47,11 +47,9 @@ public class SubGroupControl {
             if(e.getActionCommand()=="BACK")
             {
                 mv.getContentPane().removeAll();
-                mv.repaint();
                 mv.add(mv.panel);
                 mv.repaint();
-            }
-            
+            } 
         }
 
         

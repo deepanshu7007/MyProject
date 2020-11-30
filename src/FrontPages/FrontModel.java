@@ -6,12 +6,20 @@ public class FrontModel{
     static Vector<HeadMaster> headMasterList = new Vector<>();
     public static Vector<GroupMaster> groupMasterList = new Vector<>();
     public static Vector<SubGroupMaster> subGroupMasterList = new Vector<>();
+    public static Vector<AccountMaster> accountMasterList = new Vector<>();
+        public static Vector<SupplierMaster> supplierMasterList = new Vector<>();
+    public static Vector<CustomerMaster> customerMasterList = new Vector<>();
+
+    public static DefaultTableModel AccountModel;
     public static DefaultTableModel GroupTableModel;
     public static DefaultTableModel SubGroupTableModel;
+    public static DefaultTableModel AccountTableModel;
     public FrontModel()
     {
         GroupTableModel=new DefaultTableModel(new Object[][]{},new String[]{"Name","Alias","Priority","Head"});
-        SubGroupTableModel= new DefaultTableModel(new Object[][]{},new String[]{"Name","Alias","Priority","GroupName","Head"});
+        SubGroupTableModel= new DefaultTableModel(new Object[][]{},new String[]{"Name","Alias","Priority","SubGroupName","Head"});
+        AccountTableModel= new DefaultTableModel(new Object[][]{},new String[]{"Name","Alias","Priority","SubGroupName","Head"});
+        
         HeadMaster Asserts = new HeadMaster("ASSERTS","AST");
         HeadMaster Liability = new HeadMaster("LIABILITY","LBT");
         HeadMaster Income = new HeadMaster("INCOME","ICM");
@@ -37,6 +45,7 @@ public class FrontModel{
         public int priority;
         public HeadMaster prevLink;
         public ArrayList<SubGroupMaster> SubGroupMasterList = new ArrayList<>();
+        
         public GroupMaster(String Name,String Alias,int priority,int prevLink)
         {
             this.Name = Name;
@@ -51,7 +60,9 @@ public class FrontModel{
         public int priority;
         public HeadMaster head;
         public GroupMaster prevLink;
-        public ArrayList<SubGroupMaster> AccountMasterList = new ArrayList<>();
+        public ArrayList<AccountMaster> AccountMasterList = new ArrayList<>();
+        public ArrayList<CustomerMaster> CustomerMasterList = new ArrayList<>();
+        public ArrayList<SupplierMaster> SupplierMasterList = new ArrayList<>();
         public SubGroupMaster(String Name,String Alias,int priority,GroupMaster prevLink,HeadMaster head)
         {
             this.Name = Name;
@@ -63,32 +74,58 @@ public class FrontModel{
     }
     public static class AccountMaster
     {
+        public String Name,Alias;
+        public int priority;
+        public GroupMaster groupLink;
+        public SubGroupMaster subGroupLink;
+        public HeadMaster headLink;
+        
+        public AccountMaster(String Name,String Alias,int priority,SubGroupMaster sGroupLink,GroupMaster group,HeadMaster head)
+        {
+            this.Name = Name;
+            this.Alias = Alias;
+            this.groupLink = group;
+            this.priority = priority;
+            this.headLink=head;
+            this.subGroupLink=sGroupLink;
+        }
     }
     public static class SupplierMaster
     {
+        public String Name,Alias;
+        public int priority;
+        public HeadMaster headLink;
+        public GroupMaster groupLink;
+        public SubGroupMaster subGroupLink;
+        public SupplierMaster(String Name,String Alias,int priority,SubGroupMaster sGroupLink,GroupMaster group,HeadMaster head)
+        {
+            this.Name = Name;
+            this.Alias = Alias;
+            this.groupLink = group;
+            this.priority = priority;
+            this.headLink=head;
+            this.subGroupLink=sGroupLink;
+        }
     }
     public static class CustomerMaster
     {
+        public String Name,Alias;
+        public int priority;
+        public HeadMaster headLink;
+        public GroupMaster groupLink;
+        public SubGroupMaster subGroupLink;
+        public CustomerMaster(String Name,String Alias,int priority,SubGroupMaster sGroupLink,GroupMaster group,HeadMaster head)
+        {
+            this.Name = Name;
+            this.Alias = Alias;
+            this.groupLink = group;
+            this.priority = priority;
+            this.headLink=head;
+            this.subGroupLink=sGroupLink;
+        }
     }
     
-//    public DefaultTableModel getTableModel()
-//    {
-////        int i=0;
-////        Vector gml ;
-////        dtm = new DefaultTableModel();
-////        while(i<FrontModel.groupMasterList.size())
-////        {
-////            gml = new Vector();
-////            gml.add(FrontModel.groupMasterList.get(i).Name);
-////            gml.add(FrontModel.groupMasterList.get(i).Alias);
-////            gml.add(FrontModel.groupMasterList.get(i).prevLink);
-////            gml.add(FrontModel.groupMasterList.get(i).priority);
-////            dtm.addRow(gml);
-////            i++;
-////        }
-////        return dtm;
-//    }
-    
+//
     public void addGroupData(String Name,String Alias,int Priority,int Head){
         Vector v = new Vector();
         v.add(Name);
@@ -125,7 +162,75 @@ public class FrontModel{
         SubGroupTableModel.fireTableDataChanged();
         
     }
-    
+    public void addAccountGroupData(String Name,String Alias,int priority,String Group)
+    {
+        SubGroupMaster sgm = null;
+        Vector v = new Vector();
+        v.add(Name);
+        v.add(Alias);
+        v.add(priority);
+        for(SubGroupMaster tgm: subGroupMasterList)
+        {
+            if(tgm.Name.equals(Group))
+            {
+                sgm=tgm;
+                v.add(tgm.Name);
+                v.add(tgm.prevLink.Name);
+                break;
+            }
+        }
+        AccountMaster  am = new AccountMaster( Name, Alias, priority,sgm ,sgm.prevLink,sgm.prevLink.prevLink);
+        sgm.AccountMasterList.add(am);
+        accountMasterList.add(am);
+        AccountTableModel.addRow(v);
+        AccountTableModel.fireTableDataChanged();
+    }
+    public void addSupplierGroupData(String Name,String Alias,int priority,String Group)
+    {
+        SubGroupMaster sgm = null;
+        Vector v = new Vector();
+        v.add(Name);
+        v.add(Alias);
+        v.add(priority);
+        for(SubGroupMaster tgm: subGroupMasterList)
+        {
+            if(tgm.Name.equals(Group))
+            {
+                sgm=tgm;
+                v.add(tgm.Name);
+                v.add(tgm.prevLink.Name);
+                break;
+            }
+        }
+        SupplierMaster  am = new SupplierMaster( Name, Alias, priority,sgm ,sgm.prevLink,sgm.prevLink.prevLink);
+        sgm.SupplierMasterList.add(am);
+        supplierMasterList.add(am);
+        AccountTableModel.addRow(v);
+        AccountTableModel.fireTableDataChanged();
+    }
+    public void addCustomerGroupData(String Name,String Alias,int priority,String Group)
+    {
+        SubGroupMaster sgm = null;
+        Vector v = new Vector();
+        v.add(Name);
+        v.add(Alias);
+        v.add(priority);
+        for(SubGroupMaster tgm: subGroupMasterList)
+        {
+            if(tgm.Name.equals(Group))
+            {
+                sgm=tgm;
+                v.add(tgm.Name);
+                v.add(tgm.prevLink.Name);
+                break;
+            }
+        }
+        CustomerMaster  am = new CustomerMaster( Name, Alias, priority,sgm ,sgm.prevLink,sgm.prevLink.prevLink);
+        sgm.CustomerMasterList.add(am);
+        customerMasterList.add(am);
+        AccountTableModel.addRow(v);
+        AccountTableModel.fireTableDataChanged();
+    }
 //    public DefaultTableModel groupMasterTable()
 //    {
 //        DefaultTableModel dtm = new DefaultTableModel();
