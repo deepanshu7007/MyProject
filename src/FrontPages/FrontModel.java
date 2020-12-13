@@ -136,7 +136,7 @@ public class FrontModel{
         headMasterList.get(Head).GroupMasterList.add(gm);
         groupMasterList.add(gm);
         GroupTableModel.addRow(v);
-        GroupTableModel.fireTableDataChanged();
+//        GroupTableModel.fireTableDataChanged();
     }
     public void addSubGroupData(String Name,String Alias,int priority,String Group)
     {
